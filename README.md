@@ -33,3 +33,13 @@ if this results in your hard drive spinning down every minute or so and not afte
 hdparm -B255 -S180 /dev/disk/by-id/ata-PRODUCT_SERIAL
 
 sudo gedit /etc/rc.local
+
+## Mount ext4+LUKS drive
+Souce: https://askubuntu.com/a/279218
+The commands are executed without sudo. 
+
+udisksctl unlock -b /dev/disk/by-id/<suitable disk here>
+The first password prompted is the one for the disk. The second is the one for the user you're logged in with.
+  
+udisksctl mount -b /dev/dm-<device mapper number from last command>
+
